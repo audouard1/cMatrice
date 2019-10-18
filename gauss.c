@@ -19,7 +19,7 @@ void gauss_supp(double *tab, double *res, int N){
 void gauss_inff(double *tab, double *res, int N){
     double coeff;
     int i,j, n, l,li;
-    for (i = N; i >= 0; i--){
+    for (i = N-1; i >= 0; i--){
         for(n = i-1; n >= 0; n--){
             coeff = tab[n*N + i]/tab[i*N + i];
             printf("coef %f i:%d n:%d tab1:%f tab2:%f  \n", coeff, i, n, tab[i*N + i], tab[(i+1+n)*N + i]);
