@@ -16,7 +16,7 @@ int main(){
     double extime=(double) (end-start)/CLOCKS_PER_SEC;
     affiche_tab(tab);
     affiche_tab_res(a);
-    printf("exec time : %f.5", extime);
+    printf("exec time : %f.5\n", extime);
 
     return 0;
 }

@@ -15,5 +15,4 @@ int cholesky(double *tab, double *res, int N){
         
     }
     
-
 }
