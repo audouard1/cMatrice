@@ -2,7 +2,7 @@
 #include<math.h>
 
 
-#define N 4
+#define N 3
 
 int min(int a, int b){
     if(a > b){
@@ -157,7 +157,7 @@ void affiche_tab(double *tab){
     int i,j;
     for(i = 0; i < N; i++){
         for(j = 0; j < N; j++){
-            printf("%.20f ",tab[i*N+j]);
+            printf("%.2f ",tab[i*N+j]);
         }
         printf("\n");
     }

@@ -3,20 +3,21 @@
 
 void gauss(double *tab, double *res, int N){
     double coeff;
-    int i,j, n;
-    for (i = 0; i < N; i++){
-        for(n = 0; n < N-(i+1); n++){
-            coeff = tab[(i+1+n)*N + i]/tab[i*N + i];
+    int i,j, n, l,li;
+    for (i = 0; i < N-1; i++){
+        for(n = i+1; n < N; n++){
+            coeff = tab[n*N + i]/tab[i*N + i];
             printf("coef %f i:%d n:%d tab1:%f tab2:%f  \n", coeff, i, n, tab[i*N + i], tab[(i+1+n)*N + i]);
-            for ( j = 0; j < N; j++){
-                tab[(i+1+n)*N+j] = tab[(i+1+n)*N+j] - coeff*tab[i*N+j];
+            for ( j = 0; j < N; j++){//todo i+1
+                tab[n*N+j] = tab[n*N+j] - coeff*tab[i*N+j];
             }
-            res[(i+1+n)] = res[(i+1+n)] - coeff*res[i];
+            res[n] = res[n] - coeff*res[i];
         }
+        /*for(l = N-1; l>=0; l--){
+            for ( li = N-l; li < N; li++){
+                tab[l*N+li] = tab[l*N+li];
+            }
+        }*/
     }
-    for (i = N-1; i >= 0; i--){
-        for(n = 0; n < N-i; n++){
-            res[i] = res[i]/tab[i*N+i];
-        }
-    }
+    
 }
