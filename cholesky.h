@@ -1,6 +1,7 @@
 #ifndef H_CHOLES
 #define H_CHOLES
 
-int cholesky(double *tab, double *res, int N);
+void decomp_cholesky(float *tab, float decomp, int N);
+int cholesky(float *tab, float *res, int N);
 
 #endif

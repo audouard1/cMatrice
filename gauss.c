@@ -1,8 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-void gauss_supp(double *tab, double *res, int N){
-    double coeff;
+void gauss_supp(float *tab, float *res, int N){
+    float coeff;
     int i,j, n, l,li;
     for (i = 0; i < N-1; i++){
         for(n = i+1; n < N; n++){
@@ -16,8 +16,8 @@ void gauss_supp(double *tab, double *res, int N){
     }
 }
 
-void gauss_inff(double *tab, double *res, int N){
-    double coeff;
+void gauss_inff(float *tab, float *res, int N){
+    float coeff;
     int i, n, l,li;
     for (i = N-1; i > 0; i--){
         for(n = i-1; n >= 0; n--){
@@ -29,14 +29,14 @@ void gauss_inff(double *tab, double *res, int N){
     }
 }
 
-void gauss_res(double *tab, double *res, int N){
+void gauss_res(float *tab, float *res, int N){
     int i;
     for(i = 0; i<N; i++){
         res[i]= res[i]/tab[i*N+i];
     }
 }
 
-void gauss(double *tab, double *res, int N){
+void gauss(float *tab, float *res, int N){
     gauss_supp(tab, res,N);
     gauss_inff(tab, res,N);
     gauss_res(tab, res,N);

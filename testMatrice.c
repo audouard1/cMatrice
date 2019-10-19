@@ -11,7 +11,7 @@ int min(int a, int b){
     return a;
 }
 
-void init_zero(double tab[]){
+void init_zero(float tab[]){
     int i,j;
     for(i = 0; i < N; i++){
         for(j = 0; j < N; j++){
@@ -20,7 +20,7 @@ void init_zero(double tab[]){
     }
 }
 
-void a_bord1(double tab[]){
+void a_bord1(float tab[]){
     
     int i,j;
     for(i = 0; i < N; i++){
@@ -38,7 +38,7 @@ void a_bord1(double tab[]){
     }
 }
 
-void a_bord2(double tab[]){
+void a_bord2(float tab[]){
     
     int i,j;
     for(i = 0; i < N; i++){
@@ -57,7 +57,7 @@ void a_bord2(double tab[]){
     }
 }
 
-void ding_dong(double tab[]){
+void ding_dong(float tab[]){
     int i,j;
     for(i = 0; i < N; i++){
         for(j = 0; j < N; j++){
@@ -66,7 +66,7 @@ void ding_dong(double tab[]){
     }
 }
 
-void franc(double tab[]){
+void franc(float tab[]){
     int i,j;
     for(i = 0; i < N; i++){
         for(j = 0; j < N; j++){
@@ -80,7 +80,7 @@ void franc(double tab[]){
     }
 }
 
-void hilbert(double tab[]){
+void hilbert(float tab[]){
     int i,j;
     for(i = 0; i < N; i++){
         for(j = 0; j < N; j++){
@@ -89,7 +89,7 @@ void hilbert(double tab[]){
     }
 }
 
-void hilbert2(double tab[]){
+void hilbert2(float tab[]){
     int i,j;
     for(i = 0; i < N; i++){
         for(j = 0; j < N; j++){
@@ -98,9 +98,9 @@ void hilbert2(double tab[]){
     }
 }
 
-void kms(double tab[]){
+void kms(float tab[]){
     int i,j;
-    double p = 0.5;
+    float p = 0.5;
     for(i = 0; i < N; i++){
         for(j = 0; j < N; j++){
             tab[i*N+j] = pow(p, fabs(i-j));
@@ -108,9 +108,9 @@ void kms(double tab[]){
     }
 }
 
-void lehmer(double tab[]){
+void lehmer(float tab[]){
     int i,j;
-    double p = 0.5;
+    float p = 0.5;
     for(i = 0; i < N; i++){
         for(j = 0; j < N; j++){
             if(i <= j){
@@ -123,9 +123,9 @@ void lehmer(double tab[]){
     }
 }
 
-void lotkin(double tab[]){
+void lotkin(float tab[]){
     int i,j;
-    double p = 0.5;
+    float p = 0.5;
     for(i = 0; i < N; i++){
         for(j = 0; j < N; j++){
             if(i == 0){
@@ -138,9 +138,9 @@ void lotkin(double tab[]){
     }
 }
 
-void moler(double tab[]){
+void moler(float tab[]){
     int i,j;
-    double p = 0.5;
+    float p = 0.5;
     for(i = 0; i < N; i++){
         for(j = 0; j < N; j++){
             if(i == j){
@@ -153,7 +153,7 @@ void moler(double tab[]){
     }
 }
 
-void affiche_tab(double *tab){
+void affiche_tab(float *tab){
     int i,j;
     for(i = 0; i < N; i++){
         for(j = 0; j < N; j++){
@@ -163,7 +163,7 @@ void affiche_tab(double *tab){
     }
 }
 
-void affiche_tab_res(double *tab){
+void affiche_tab_res(float *tab){
     int i,j;
     for(i = 0; i < N; i++){
         printf("%.20f \n",tab[i]);
