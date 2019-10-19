@@ -20,6 +20,17 @@ void init_zero(float tab[]){
     }
 }
 
+void transpose(float tab[]){
+    int i, j, sauv;
+    for(i = 0; i < N; i++){
+        for(j = i+1; j < N; j++){
+            sauv = tab[i*N+j];
+            tab[i*N+j] = tab[j*N+i];
+            tab[j*N+i] = sauv;
+        }
+    }
+}
+
 void a_bord1(float tab[]){
     
     int i,j;

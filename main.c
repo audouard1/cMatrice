@@ -11,7 +11,9 @@ int main(){
     //init_zero(tab);
     /*printf("matrice bord\n");
     a_bord1(tab);*/
+    printf("matrice de départ :\n");
     affiche_tab(tab);
+    printf("\n");
     clock_t start=clock();
     //gauss(tab, a, 3);
     cholesky(tab, a, 3);

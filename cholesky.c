@@ -3,20 +3,6 @@
 #include <math.h>
 #include "testMatrice.h"
 
-
-/*void decomp_cholesky(float *tab, float *decomp, int N){
-    int i, j;
-    for(i = 0; i < N; i++){
-        decomp[i*N + i] = sqrt(tab[i*N + i]);
-        for (j = i+1; j < N; j++)
-        {
-            decomp[i*N + j] = tab[i*N + j]/decomp[i*N + i];
-        }
-        
-    }
-}*/
-
-
 int decomp_cholesky(float *tab, float *decomp, int N){
     int i, j, s, k;
     float somme;
@@ -25,8 +11,6 @@ int decomp_cholesky(float *tab, float *decomp, int N){
         for(j = 0; j <= i-1; j++){
             somme += pow(decomp[j*N + i], 2);
         }
-        printf("tab[i][i] = %f\n", tab[i*N + i]);
-        printf("somme1 = %f\n", somme);
         s = tab[i*N + i] - somme;
         if(s <= 0){
             printf("erreur cholesky : matrice non definie positive\n");
@@ -50,7 +34,9 @@ int decomp_cholesky(float *tab, float *decomp, int N){
 
 int cholesky(float *tab, float *res, int N){
     float decomp[100];
+    init_zero(decomp);
     decomp_cholesky(tab, decomp, N);
+    printf("decomposition Cholesky :\n");
     affiche_tab(decomp);
 
 }

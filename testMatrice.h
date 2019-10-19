@@ -3,6 +3,7 @@
 
 int min(int a, int b);
 void init_zero(float tab[]);
+void transpose(float tab[]);
 void a_bord1(float tab[]);
 void a_bord2(float tab[]);
 void ding_dong(float tab[]);
