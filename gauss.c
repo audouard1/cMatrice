@@ -37,8 +37,8 @@ void gauss_res(float *tab, float *res, int N){
 }
 
 void gauss(float *tab, float *res, int N){
-    gauss_supp(tab, res,N);
-    gauss_inff(tab, res,N);
-    gauss_res(tab, res,N);
+    gauss_supp(tab, res, N);
+    gauss_inff(tab, res, N);
+    gauss_res(tab, res, N);
 
 }

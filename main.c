@@ -19,8 +19,9 @@ int main(){
     cholesky(tab, a, 3);
     clock_t end=clock();
     double extime=(double) (end-start)/CLOCKS_PER_SEC;
-    /*affiche_tab(tab);
-    affiche_tab_res(a);*/
+    //affiche_tab(tab);
+    printf("resultat :\n");
+    affiche_tab_res(a);
     printf("exec time : %f.5\n", extime);
 
     return 0;
