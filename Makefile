@@ -5,10 +5,12 @@ EXEC=cMatrice
 
 all: $(EXEC)
 
-cMatrice: testMatrice.o gauss.o cholesky.o main.o
+cMatrice: testMatrice.o gauss.o cholesky.o main.o display.o testing.o
 	$(CC) -o $@ $^ $(LDFLAGS) -lm
 
-main.o: gauss.o testMatrice.o cholesky.o
+main.o: testing.o
+
+testing.o: gauss.o testMatrice.o cholesky.o display.o
 
 %.o: %.c
 	$(CC) -o $@ -c $< $(CFLAGS) -lm

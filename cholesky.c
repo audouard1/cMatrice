@@ -60,11 +60,11 @@ void equation2(float *tab, float *res, float *y, int N){
 
 int cholesky(float *tab, float *res, int N){
     float decomp[100], y[N];
-    init_zero(decomp);
+    init_zero(decomp, N);
     decomp_cholesky(tab, decomp, N);
     //R * y = b
     equation1(decomp, res, y, N);
-    transpose(decomp);
+    transpose(decomp, N);
     //Rt * x = y
     equation2(decomp, y, res, N);
 }

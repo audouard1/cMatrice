@@ -1,17 +1,7 @@
 #include<stdio.h>
 #include<math.h>
 
-
-#define N 3
-
-int min(int a, int b){
-    if(a > b){
-        return b;
-    }
-    return a;
-}
-
-void init_zero(float tab[]){
+void init_zero(float tab[], int N){
     int i,j;
     for(i = 0; i < N; i++){
         for(j = 0; j < N; j++){
@@ -20,7 +10,7 @@ void init_zero(float tab[]){
     }
 }
 
-void transpose(float tab[]){
+void transpose(float tab[], int N){
     int i, j, sauv;
     for(i = 0; i < N; i++){
         for(j = i+1; j < N; j++){
@@ -31,7 +21,7 @@ void transpose(float tab[]){
     }
 }
 
-void a_bord1(float tab[]){
+void a_bord1(float tab[], int N){
     
     int i,j;
     for(i = 0; i < N; i++){
@@ -49,7 +39,7 @@ void a_bord1(float tab[]){
     }
 }
 
-void a_bord2(float tab[]){
+void a_bord2(float tab[], int N){
     
     int i,j;
     for(i = 0; i < N; i++){
@@ -68,7 +58,7 @@ void a_bord2(float tab[]){
     }
 }
 
-void ding_dong(float tab[]){
+void ding_dong(float tab[], int N){
     int i,j;
     for(i = 0; i < N; i++){
         for(j = 0; j < N; j++){
@@ -77,7 +67,7 @@ void ding_dong(float tab[]){
     }
 }
 
-void franc(float tab[]){
+void franc(float tab[], int N){
     int i,j;
     for(i = 0; i < N; i++){
         for(j = 0; j < N; j++){
@@ -85,31 +75,30 @@ void franc(float tab[]){
                 tab[i*N+j] = 0;
             }
             else{
-                tab[i*N+j] = min(i,j)+1;
+                tab[i*N+j] = fmin(i,j)+1;
             }
         }
     }
 }
 
-void hilbert(float tab[]){
+void hilbertPlus(float tab[], int N, int plus){
     int i,j;
     for(i = 0; i < N; i++){
         for(j = 0; j < N; j++){
-            tab[i*N+j] = 1.0/((i+1)+(j+1)-1);
+            tab[i*N+j] = 1.0/((i+1)+(j+1)+plus);
         }
     }
 }
 
-void hilbert2(float tab[]){
-    int i,j;
-    for(i = 0; i < N; i++){
-        for(j = 0; j < N; j++){
-            tab[i*N+j] = 1.0/((i+1)+(j+1)+1);
-        }
-    }
+void hilbert(float tab[], int N){
+    hilbertPlus(tab, N, 1);
 }
 
-void kms(float tab[]){
+void hilbert2(float tab[], int N){
+    hilbertPlus(tab, N, -1);
+}
+
+void kms(float tab[], int N){
     int i,j;
     float p = 0.5;
     for(i = 0; i < N; i++){
@@ -119,7 +108,7 @@ void kms(float tab[]){
     }
 }
 
-void lehmer(float tab[]){
+void lehmer(float tab[], int N){
     int i,j;
     float p = 0.5;
     for(i = 0; i < N; i++){
@@ -134,7 +123,7 @@ void lehmer(float tab[]){
     }
 }
 
-void lotkin(float tab[]){
+void lotkin(float tab[], int N){
     int i,j;
     float p = 0.5;
     for(i = 0; i < N; i++){
@@ -149,7 +138,7 @@ void lotkin(float tab[]){
     }
 }
 
-void moler(float tab[]){
+void moler(float tab[], int N){
     int i,j;
     float p = 0.5;
     for(i = 0; i < N; i++){
@@ -158,28 +147,28 @@ void moler(float tab[]){
                 tab[i*N+j] = i+1;
             }
             else{
-                tab[i*N+j] = min(i,j)-1;
+                tab[i*N+j] = fmin(i,j)-1;
             }
         }
     }
 }
 
-void affiche_tab(float *tab){
+void matrice_creuse(float tab[], int N, int pourcent){
     int i,j;
     for(i = 0; i < N; i++){
         for(j = 0; j < N; j++){
-            printf("%.2f ",tab[i*N+j]);
+            if(rand()%100+1 <= pourcent){
+                tab[i*N+j] = 0;
+            }
+            else{
+                tab[i*N+j] = 1;
+            }
+            
         }
-        printf("\n");
     }
 }
 
-void affiche_tab_res(float *tab){
-    int i,j;
-    for(i = 0; i < N; i++){
-        printf("%.20f \n",tab[i]);
-    }
-}
+
 
 
 

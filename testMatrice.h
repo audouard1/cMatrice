@@ -1,20 +1,19 @@
 #ifndef H_TEST_MATRICE
 #define H_TEST_MATRICE
 
-int min(int a, int b);
-void init_zero(float tab[]);
-void transpose(float tab[]);
-void a_bord1(float tab[]);
-void a_bord2(float tab[]);
-void ding_dong(float tab[]);
-void franc(float tab[]);
-void hilbert(float tab[]);
-void hilbert2(float tab[]);
-void kms(float tab[]);
-void lehmer(float tab[]);
-void lotkin(float tab[]);
-void moler(float tab[]);
-void affiche_tab(float *tab);
-void affiche_tab_res(float *tab);
+void init_zero(float tab[], int N);
+void transpose(float tab[], int N);
+void a_bord1(float tab[], int N);
+void a_bord2(float tab[], int N);
+void ding_dong(float tab[], int N);
+void franc(float tab[], int N);
+void hilbertPlus(float tab[], int N, int plus);
+void hilbert(float tab[], int N);
+void hilbert2(float tab[], int N);
+void kms(float tab[], int N);
+void lehmer(float tab[], int N);
+void lotkin(float tab[], int N);
+void moler(float tab[], int N);
+void matrice_creuse(float tab[], int N, int pourcent);
 
 #endif
