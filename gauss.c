@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <stdbool.h>
 
 void gauss_supp(float *tab, float *res, int N){
     float coeff;
@@ -41,4 +42,30 @@ void gauss(float *tab, float *res, int N){
     gauss_inff(tab, res, N);
     gauss_res(tab, res, N);
 
+}
+
+bool make_valide_gauss(float *tab, float *res, int N){
+    int i,j,n;
+    float tmp, tmpres;
+    for(i = 0; i<N; i++){
+        if(tab[i*N+i]==0){
+            for(n = 0; n < N-i;n++){
+                if(tab[n*N+i]!=0){
+                    for(j = 0; j <N; j++){
+                        tmp = tab[i*N+j];
+                        tab[i*N+j]=tab[n*N+j];
+                        tab[n*N+j] = tmp;
+                    }
+                    tmpres = res[i];
+                    res[i]= res[n];
+                    res[n]= res[i];
+
+                }
+                else{
+                    return false;
+                }
+            }
+        }
+    }
+    return true;
 }

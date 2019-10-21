@@ -21,22 +21,32 @@ float error(float tab[], float res[], int N){
 }
 
 void test_gauss(){
-    float tab[10000], a[100], err; 
+    float tab[1000000], a[1000], err; 
     int i,j;
-    
-    for( j = 3; j < 100; j++){
+    clock_t start, end;
+    printf("time(ms);dim;error\n");
+    for( j = 3; j < 4; j++){
         for( i = 0; i < j; i++){
             a[i] = 1;
         }
         init_zero(tab,j);
-        a_bord1(tab,j);
-        clock_t start=clock();
-        gauss(tab, a, j);
-        clock_t end=clock();
+        a_bord2(tab,j);
+        if(make_valide_gauss(tab,a,j)){
+            start=clock();
+            display_tab(tab, j);
+            gauss(tab, a, j);
+            display_tab(tab, j);
+            display_tab_res(a,j);
+            end=clock();
+        }
         init_zero(tab,j);
-        a_bord1(tab,j);
+        a_bord2(tab,j);
         err = error(tab, a, j);
         double extime=(double) (end-start)*1000.0/CLOCKS_PER_SEC;
-        printf("time(ms) : %f dim : %d error : %f\n",extime, j, err);
+        if(extime != 0){
+            printf("%f;%d;%f\n",extime, j, err);
+        }
     }
+
+    
 }
