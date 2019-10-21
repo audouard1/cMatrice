@@ -5,6 +5,9 @@
 
 
 int main(){
-    test_gauss();
+    //test_gauss();
+    
+    test_cholesky();
+
     return 0;
 }

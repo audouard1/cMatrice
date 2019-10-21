@@ -59,9 +59,11 @@ void equation2(float *tab, float *res, float *y, int N){
 }
 
 int cholesky(float *tab, float *res, int N){
+    int err;
     float decomp[100], y[N];
     init_zero(decomp, N);
-    decomp_cholesky(tab, decomp, N);
+    err = decomp_cholesky(tab, decomp, N);
+    if(err == -1){exit(0);}
     //R * y = b
     equation1(decomp, res, y, N);
     transpose(decomp, N);

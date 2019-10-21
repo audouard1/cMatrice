@@ -6,6 +6,7 @@
 #include "testMatrice.h"
 #include "display.h"
 
+
 float error(float tab[], float res[], int N){
     int i,j;
     float tmp;
@@ -20,6 +21,7 @@ float error(float tab[], float res[], int N){
     return error;
 }
 
+//test la rapidité de l'execution en fonction de la taille de la matrice
 void test_gauss(){
     float tab[1000000], a[1000], err; 
     int i,j;
@@ -47,6 +49,30 @@ void test_gauss(){
             printf("%f;%d;%f\n",extime, j, err);
         }
     }
-
-    
 }
+
+
+void test_cholesky(){
+    float tab[1000000], a[1000]; 
+    int i,j;
+    clock_t start, end;
+    printf("time(ms);dim;error\n");
+    for( j = 1; j < 10; j++){
+        for( i = 0; i < j; i++){
+            a[i] = 1;
+        }
+        init_zero(tab,j);
+        matrice_sym_pos(tab, j);
+        start=clock();
+        //display_tab(tab, j);
+        cholesky(tab, a, j);
+        //display_tab(tab, j);
+        //display_tab_res(a,j);
+        end=clock();
+        double extime=(double) (end-start)*1000.0/CLOCKS_PER_SEC;
+        if(extime != 0){
+            printf("%d ieme itération : %f;%d\n", i,extime, j);
+        }
+    }
+}
+    

@@ -1,4 +1,5 @@
 #include<stdio.h>
+#include<stdlib.h>
 #include<math.h>
 
 void init_zero(float tab[], int N){
@@ -168,7 +169,21 @@ void matrice_creuse(float tab[], int N, int pourcent){
     }
 }
 
-
+//créer aléatoirement une matrice symétrique définie positive
+void matrice_sym_pos(float tab[], int N){
+    int i,j;
+    for(i = 0; i < N; i++){
+        for(j = 0; j < N; j++){
+            if(i == j){
+                tab[i*N+j] = N;
+            }
+            else
+            {
+                tab[i*N+j] = 1;
+            } 
+        }
+    }
+}
 
 
 

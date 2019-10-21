@@ -15,5 +15,6 @@ void lehmer(float tab[], int N);
 void lotkin(float tab[], int N);
 void moler(float tab[], int N);
 void matrice_creuse(float tab[], int N, int pourcent);
+void matrice_sym_pos(float tab[], int N);
 
 #endif
