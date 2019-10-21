@@ -2,8 +2,8 @@
 #include <stdlib.h>
 #include <stdbool.h>
 
-void gauss_supp(float *tab, float *res, int N){
-    float coeff;
+void gauss_supp(double *tab, double *res, int N){
+    double coeff;
     int i,j, n, l,li;
     for (i = 0; i < N-1; i++){
         for(n = i+1; n < N; n++){
@@ -17,8 +17,8 @@ void gauss_supp(float *tab, float *res, int N){
     }
 }
 
-void gauss_inff(float *tab, float *res, int N){
-    float coeff;
+void gauss_inff(double *tab, double *res, int N){
+    double coeff;
     int i, n, l,li;
     for (i = N-1; i > 0; i--){
         for(n = i-1; n >= 0; n--){
@@ -30,23 +30,23 @@ void gauss_inff(float *tab, float *res, int N){
     }
 }
 
-void gauss_res(float *tab, float *res, int N){
+void gauss_res(double *tab, double *res, int N){
     int i;
     for(i = 0; i<N; i++){
         res[i]= res[i]/tab[i*N+i];
     }
 }
 
-void gauss(float *tab, float *res, int N){
+void gauss(double *tab, double *res, int N){
     gauss_supp(tab, res, N);
     gauss_inff(tab, res, N);
     gauss_res(tab, res, N);
 
 }
 
-bool make_valide_gauss(float *tab, float *res, int N){
+bool make_valide_gauss(double *tab, double *res, int N){
     int i,j,n;
-    float tmp, tmpres;
+    double tmp, tmpres;
     for(i = 0; i<N; i++){
         if(tab[i*N+i]==0){
             for(n = 0; n < N-i;n++){
@@ -59,7 +59,6 @@ bool make_valide_gauss(float *tab, float *res, int N){
                     tmpres = res[i];
                     res[i]= res[n];
                     res[n]= res[i];
-
                 }
                 else{
                     return false;

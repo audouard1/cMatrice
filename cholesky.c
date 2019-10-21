@@ -4,9 +4,9 @@
 #include "testMatrice.h"
 
 //trouve la matrice triangualaire inférieure (la première dont on a besoin pour les calculs)
-int decomp_cholesky(float *tab, float *decomp, int N){
+int decomp_cholesky(double *tab, double *decomp, int N){
     int i, j, s, k;
-    float somme;
+    double somme;
     for(i = 0; i < N; i++){
         somme = 0;
         for(j = 0; j <= i-1; j++){
@@ -31,9 +31,9 @@ int decomp_cholesky(float *tab, float *decomp, int N){
 }
 
 //equation avec matrice triangulaire inférieure
-void equation1(float *tab, float *res, float *y, int N){
+void equation1(double *tab, double *res, double *y, int N){
     int i, j;
-    float somme;
+    double somme;
     y[0] = res[0]/tab[0];
     for(i = 1; i < N; i++){
         somme = 0;
@@ -45,9 +45,9 @@ void equation1(float *tab, float *res, float *y, int N){
 }
 
 //equation 1 dans l'autre sens (avec matrice triangulaire supérieure)
-void equation2(float *tab, float *res, float *y, int N){
+void equation2(double *tab, double *res, double *y, int N){
     int i, j;
-    float somme;
+    double somme;
     y[N-1] = res[N-1]/tab[(N-1)*N+N-1];
     for(i = N-2; i >= 0; i--){
         somme = 0;
@@ -58,9 +58,9 @@ void equation2(float *tab, float *res, float *y, int N){
     }
 }
 
-int cholesky(float *tab, float *res, int N){
+int cholesky(double *tab, double *res, int N){
     int err;
-    float decomp[100], y[N];
+    double decomp[100], y[N];
     init_zero(decomp, N);
     err = decomp_cholesky(tab, decomp, N);
     if(err == -1){exit(0);}

@@ -1,8 +1,25 @@
+/**
+ * \file testMatrice.c
+ * \author Aurelien DOUARD, Anthony Bertrand
+ * \version 0.1
+ * \date 21 octobre 2019
+ *
+ * Programme pour générer les matrices de test.
+ *
+ */
+
 #include<stdio.h>
 #include<stdlib.h>
 #include<math.h>
 
-void init_zero(float tab[], int N){
+/**
+ * \fn void init_zero(double tab[], int N)
+ * \brief Fonction pour l'initialisation d'une matrice à 0.
+ *
+ * \param tab tableau a initialiser à 0.
+ * \param N dimention de la matrice.
+ */
+void init_zero(double tab[], int N){
     int i,j;
     for(i = 0; i < N; i++){
         for(j = 0; j < N; j++){
@@ -11,7 +28,14 @@ void init_zero(float tab[], int N){
     }
 }
 
-void transpose(float tab[], int N){
+/**
+ * \fn void transpose(double tab[], int N)
+ * \brief Fonction pour transposer une matrice.
+ *
+ * \param tab tableau ou est contenu la matrice.
+ * \param N dimention de la matrice.
+ */
+void transpose(double tab[], int N){
     int i, j, sauv;
     for(i = 0; i < N; i++){
         for(j = i+1; j < N; j++){
@@ -22,7 +46,14 @@ void transpose(float tab[], int N){
     }
 }
 
-void a_bord1(float tab[], int N){
+/**
+ * \fn a_bord1(double tab[], int N)
+ * \brief Fonction pour générer une matrice a bord.
+ *
+ * \param tab tableau ou est contenu la matrice.
+ * \param N dimention de la matrice.
+ */
+void a_bord1(double tab[], int N){
     
     int i,j;
     for(i = 0; i < N; i++){
@@ -40,7 +71,14 @@ void a_bord1(float tab[], int N){
     }
 }
 
-void a_bord2(float tab[], int N){
+/**
+ * \fn a_bord2(double tab[], int N)
+ * \brief Fonction pour générer une matrice a bord.
+ *
+ * \param tab tableau ou est contenu la matrice.
+ * \param N dimention de la matrice.
+ */
+void a_bord2(double tab[], int N){
     
     int i,j;
     for(i = 0; i < N; i++){
@@ -59,7 +97,14 @@ void a_bord2(float tab[], int N){
     }
 }
 
-void ding_dong(float tab[], int N){
+/**
+ * \fn void ding_dong(double tab[], int N)
+ * \brief Fonction pour générer une matrice ding dong.
+ *
+ * \param tab tableau ou est contenu la matrice.
+ * \param N dimention de la matrice.
+ */
+void ding_dong(double tab[], int N){
     int i,j;
     for(i = 0; i < N; i++){
         for(j = 0; j < N; j++){
@@ -68,7 +113,14 @@ void ding_dong(float tab[], int N){
     }
 }
 
-void franc(float tab[], int N){
+/**
+ * \fn franc(double tab[], int N)
+ * \brief Fonction pour générer une matrice franc.
+ *
+ * \param tab tableau ou est contenu la matrice.
+ * \param N dimention de la matrice.
+ */
+void franc(double tab[], int N){
     int i,j;
     for(i = 0; i < N; i++){
         for(j = 0; j < N; j++){
@@ -82,7 +134,14 @@ void franc(float tab[], int N){
     }
 }
 
-void hilbertPlus(float tab[], int N, int plus){
+/**
+ * \fn hilbertPlus(double tab[], int N, int plus)
+ * \brief Fonction pour générer une matrice hilbert.
+ * \param plus element de l'équation a ajouter.
+ * \param tab tableau ou est contenu la matrice.
+ * \param N dimention de la matrice.
+ */
+void hilbertPlus(double tab[], int N, int plus){
     int i,j;
     for(i = 0; i < N; i++){
         for(j = 0; j < N; j++){
@@ -91,17 +150,35 @@ void hilbertPlus(float tab[], int N, int plus){
     }
 }
 
-void hilbert(float tab[], int N){
+/**
+ * \fn hilbert(double tab[], int N)
+ * \brief Fonction pour générer une matrice hilbert +1.
+ * \param tab tableau ou est contenu la matrice.
+ * \param N dimention de la matrice.
+ */
+void hilbert(double tab[], int N){
     hilbertPlus(tab, N, 1);
 }
 
-void hilbert2(float tab[], int N){
+/**
+ * \fn hilbert2(double tab[], int N)
+ * \brief Fonction pour générer une matrice hilbert -1.
+ * \param tab tableau ou est contenu la matrice.
+ * \param N dimention de la matrice.
+ */
+void hilbert2(double tab[], int N){
     hilbertPlus(tab, N, -1);
 }
 
-void kms(float tab[], int N){
+/**
+ * \fn void kms(double tab[], int N)
+ * \brief Fonction pour générer une matrice kms.
+ * \param tab tableau ou est contenu la matrice.
+ * \param N dimention de la matrice.
+ */
+void kms(double tab[], int N){
     int i,j;
-    float p = 0.5;
+    double p = 0.5;
     for(i = 0; i < N; i++){
         for(j = 0; j < N; j++){
             tab[i*N+j] = pow(p, fabs(i-j));
@@ -109,9 +186,15 @@ void kms(float tab[], int N){
     }
 }
 
-void lehmer(float tab[], int N){
+/**
+ * \fn void lehmer(double tab[], int N)
+ * \brief Fonction pour générer une matrice lehmer.
+ * \param tab tableau ou est contenu la matrice.
+ * \param N dimention de la matrice.
+ */
+void lehmer(double tab[], int N){
     int i,j;
-    float p = 0.5;
+    double p = 0.5;
     for(i = 0; i < N; i++){
         for(j = 0; j < N; j++){
             if(i <= j){
@@ -124,9 +207,15 @@ void lehmer(float tab[], int N){
     }
 }
 
-void lotkin(float tab[], int N){
+/**
+ * \fn void lotkin(double tab[], int N)
+ * \brief Fonction pour générer une matrice lokin.
+ * \param tab tableau ou est contenu la matrice.
+ * \param N dimention de la matrice.
+ */
+void lotkin(double tab[], int N){
     int i,j;
-    float p = 0.5;
+    double p = 0.5;
     for(i = 0; i < N; i++){
         for(j = 0; j < N; j++){
             if(i == 0){
@@ -139,9 +228,15 @@ void lotkin(float tab[], int N){
     }
 }
 
-void moler(float tab[], int N){
+/**
+ * \fn void moler(double tab[], int N)
+ * \brief Fonction pour générer une matrice moler.
+ * \param tab tableau ou est contenu la matrice.
+ * \param N dimention de la matrice.
+ */
+void moler(double tab[], int N){
     int i,j;
-    float p = 0.5;
+    double p = 0.5;
     for(i = 0; i < N; i++){
         for(j = 0; j < N; j++){
             if(i == j){
@@ -154,7 +249,14 @@ void moler(float tab[], int N){
     }
 }
 
-void matrice_creuse(float tab[], int N, int pourcent){
+/**
+ * \fn void matrice_creuse(double tab[], int N, int pourcent)
+ * \brief Fonction pour générer une matrice creuse.
+ * \param pourcent pourcentage de 0 dans la matrice.
+ * \param tab tableau ou est contenu la matrice.
+ * \param N dimention de la matrice.
+ */
+void matrice_creuse(double tab[], int N, int pourcent){
     int i,j;
     for(i = 0; i < N; i++){
         for(j = 0; j < N; j++){
@@ -169,8 +271,13 @@ void matrice_creuse(float tab[], int N, int pourcent){
     }
 }
 
-//créer aléatoirement une matrice symétrique définie positive
-void matrice_sym_pos(float tab[], int N){
+/**
+ * \fn void matrice_creuse(double tab[], int N, int pourcent)
+ * \brief Créer aléatoirement une matrice symétrique définie positive.
+ * \param tab tableau ou est contenu la matrice.
+ * \param N dimention de la matrice.
+ */
+void matrice_sym_pos(double tab[], int N){
     int i,j;
     for(i = 0; i < N; i++){
         for(j = 0; j < N; j++){
