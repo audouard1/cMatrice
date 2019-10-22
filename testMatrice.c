@@ -272,7 +272,7 @@ void matrice_creuse(double tab[], int N, int pourcent){
 }
 
 /**
- * \fn void matrice_creuse(double tab[], int N, int pourcent)
+ * \fn void matrice_sym_pos(double tab[], int N, int pourcent)
  * \brief Créer aléatoirement une matrice symétrique définie positive.
  * \param tab tableau ou est contenu la matrice.
  * \param N dimention de la matrice.
