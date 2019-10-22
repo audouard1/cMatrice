@@ -5,8 +5,8 @@
 
 //trouve la matrice triangualaire inférieure (la première dont on a besoin pour les calculs)
 int decomp_cholesky(double *tab, double *decomp, int N){
-    int i, j, s, k;
-    double somme;
+    int i, j, k;
+    double somme, s;
     for(i = 0; i < N; i++){
         somme = 0;
         for(j = 0; j <= i-1; j++){
@@ -60,7 +60,11 @@ void equation2(double *tab, double *res, double *y, int N){
 
 int cholesky(double *tab, double *res, int N){
     int err;
-    double decomp[100], y[N];
+    double *decomp = calloc(N*N, sizeof(double)), y[10000];
+    if(decomp == NULL){
+        printf("PB malloc");
+        exit(0);
+    }
     init_zero(decomp, N);
     err = decomp_cholesky(tab, decomp, N);
     if(err == -1){exit(0);}
@@ -69,4 +73,5 @@ int cholesky(double *tab, double *res, int N){
     transpose(decomp, N);
     //Rt * x = y
     equation2(decomp, y, res, N);
+    free(decomp);
 }

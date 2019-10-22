@@ -83,4 +83,78 @@ void test_cholesky(){
         }
     }
 }
+
+/**
+ * test la rapidité de l'execution de gauss en fonction de la taille de la matrice
+ */
+void test_gauss_Dyn(int maxDim){
+    double *tab, *a, err; 
+    tab = calloc(maxDim*maxDim, sizeof(double));
+    a = calloc(maxDim, sizeof(double));
+    if(tab == NULL || a == NULL){
+        printf("PB malloc");
+        exit(0);
+    }
+    int i,j;
+    clock_t start, end;
+    printf("time(ms);dim;error\n");
+    for( j = 100; j < 1000; j++){
+        for( i = 0; i < j; i++){
+            a[i] = 1;
+        }
+        init_zero(tab,j);
+        a_bord1(tab,j);
+        if(make_valide_gauss(tab,a,j)){
+            start=clock();
+            gauss(tab, a, j);
+            end=clock();
+        }
+        init_zero(tab,j);
+        a_bord1(tab,j);
+        err = error(tab, a, j);
+        double extime=(double) (end-start)*1000.0/CLOCKS_PER_SEC;
+        if(extime != 0){
+            printf("%f;%d;%f\n",extime, j, err);
+        }
+    }
+    free(tab);
+    free(a);
+}
+
+/**
+ * test la rapidité de l'execution de gauss en fonction de la taille de la matrice
+ */
+void test_cholesky_Dyn(int maxDim){
+    double *tab, *a, err; 
+    tab = calloc(maxDim*maxDim, sizeof(double));
+    a = calloc(maxDim, sizeof(double));
+    if(tab == NULL || a == NULL){
+        printf("PB malloc");
+        exit(0);
+    }
+    int i,j;
+    clock_t start, end;
+    printf("time(ms);dim;error\n");
+    for( j = 100; j < 1000; j++){
+        for( i = 0; i < j; i++){
+            a[i] = 1;
+        }
+        init_zero(tab,j);
+        matrice_sym_pos(tab, j);
+        start=clock();
+       //display_tab(tab, j);
+        cholesky(tab, a, j);
+        //display_tab_res(a,j);
+        end=clock();
+        init_zero(tab,j);
+        matrice_sym_pos(tab, j);
+        err = error(tab, a, j);
+        double extime=(double) (end-start)*1000.0/CLOCKS_PER_SEC;
+        if(extime != 0){
+            printf("%f;%d;%f\n",extime, j, err);
+        }
+    }
+    free(tab);
+    free(a);
+}
     
