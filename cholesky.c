@@ -1,9 +1,27 @@
+/**
+ * \file cholesky.c
+ * \author Aurelien DOUARD, Anthony Bertrand
+ * \brief Programme pour la résolution de matrice avec la methodes de cholesky.
+ * \version 0.1
+ * \date 21 octobre 2019
+ *
+ * Programme pour la résolution de matrice avec la methodes de cholesky.
+ *
+ */
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
 #include "testMatrice.h"
 
-//trouve la matrice triangualaire inférieure (la première dont on a besoin pour les calculs)
+/**
+ * \fn int decomp_cholesky(double *tab, double *decomp, int N)
+ * \brief Fonction pour obtenir la matrice triangualaire inférieure (la première dont on a besoin pour les calculs)
+ *
+ * \param tab tableau contenant la matrice a résoudre.
+ * \param decomp tableau contenant la matrice décomposé par cholesky
+ * \param N dimention de la matrice.
+ */
 int decomp_cholesky(double *tab, double *decomp, int N){
     int i, j, k;
     double somme, s;
@@ -30,7 +48,15 @@ int decomp_cholesky(double *tab, double *decomp, int N){
 
 }
 
-//equation avec matrice triangulaire inférieure
+/**
+ * \fn void equation1(double *tab, double *res, double *y, int N)
+ * \brief Fonction d'equation avec matrice triangulaire inférieure
+ *
+ * \param tab tableau contenant la matrice a résoudre.
+ * \param res résultat voulu pour la matrice "tab"
+ * \param y ?
+ * \param N dimention de la matrice.
+ */
 void equation1(double *tab, double *res, double *y, int N){
     int i, j;
     double somme;
@@ -44,7 +70,15 @@ void equation1(double *tab, double *res, double *y, int N){
     }
 }
 
-//equation 1 dans l'autre sens (avec matrice triangulaire supérieure)
+/**
+ * \fn void equation1(double *tab, double *res, double *y, int N)
+ * \brief Fonction qui réalise equation 1 dans l'autre sens (avec matrice triangulaire supérieure)
+ *
+ * \param tab tableau contenant la matrice a résoudre.
+ * \param res résultat voulu pour la matrice "tab"
+ * \param y ?
+ * \param N dimention de la matrice.
+ */
 void equation2(double *tab, double *res, double *y, int N){
     int i, j;
     double somme;
@@ -58,6 +92,14 @@ void equation2(double *tab, double *res, double *y, int N){
     }
 }
 
+/**
+ * \fn void cholesky(double *tab, double *res, int N)
+ * \brief Fonction pour calculer le résultat d'une matrice donnée avec la méthode de cholesky
+ *
+ * \param tab tableau contenant la matrice a résoudre.
+ * \param res tableau contenant les résultats voulu pour la matrice "tab" donnée.
+ * \param N dimention de la matrice.
+ */
 int cholesky(double *tab, double *res, int N){
     int err;
     double *decomp = calloc(N*N, sizeof(double)), y[10000];

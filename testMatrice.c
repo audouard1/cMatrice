@@ -3,6 +3,7 @@
  * \author Aurelien DOUARD, Anthony Bertrand
  * \version 0.1
  * \date 21 octobre 2019
+ * \brief Programme pour générer les matrices de test.
  *
  * Programme pour générer les matrices de test.
  *
