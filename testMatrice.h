@@ -1,3 +1,14 @@
+/**
+ * \file testMatrice.h
+ * \author Aurelien DOUARD, Anthony Bertrand
+ * \brief fichier contenant le prototype des fonctions de création de matrices et d'opération sur les matrices
+ * \version 0.1
+ * \date 21 octobre 2019
+ *
+ * fichier contenant le prototype des fonctions de création de matrices et d'opération sur les matrices
+ *
+ */
+
 #ifndef H_TEST_MATRICE
 #define H_TEST_MATRICE
 

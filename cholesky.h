@@ -1,3 +1,14 @@
+/**
+ * \file cholesky.h
+ * \author Aurelien DOUARD, Anthony Bertrand
+ * \brief fichier contenant le prototype des fonctions du programme cholesky 
+ * \version 0.1
+ * \date 21 octobre 2019
+ *
+ * fichier contenant le prototype des fonctions du programme cholesky
+ *
+ */
+
 #ifndef H_CHOLES
 #define H_CHOLES
 

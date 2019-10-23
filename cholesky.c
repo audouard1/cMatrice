@@ -16,7 +16,7 @@
 
 /**
  * \fn int decomp_cholesky(double *tab, double *decomp, int N)
- * \brief Fonction pour obtenir la matrice triangualaire inférieure (la première dont on a besoin pour les calculs)
+ * \brief Fonction pour obtenir la matrice triangulaire inférieure
  *
  * \param tab tableau contenant la matrice a résoudre.
  * \param decomp tableau contenant la matrice décomposé par cholesky

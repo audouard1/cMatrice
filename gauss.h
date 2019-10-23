@@ -1,3 +1,14 @@
+/**
+ * \file gauss.h
+ * \author Aurelien DOUARD, Anthony Bertrand
+ * \brief fichier contenant le prototype des fonctions du programme gauss
+ * \version 0.1
+ * \date 21 octobre 2019
+ *
+ * fichier contenant le prototype des fonctions du programme gauss
+ *
+ */
+
 #include <stdbool.h>
 
 #ifndef H_GAUSS
