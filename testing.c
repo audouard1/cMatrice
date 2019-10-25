@@ -29,15 +29,15 @@
 double error(double tab[], double res[], int N){
     int i,j;
     double tmp;
-    double error;
+    double error = 0;
     for(i =0; i<N; i++){
         tmp = 0;
         for(j =0; j < N; j++){
             tmp = tmp + tab[i*N+j] * res[j];
         }
-        error =  1.0-tmp;
+        error = error + pow(1.0-tmp, 2);
     }
-    return error;
+    return sqrt(error);
 }
 
 /**
