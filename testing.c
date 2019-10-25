@@ -15,7 +15,7 @@
 #include "gauss.h"
 #include "cholesky.h"
 #include "testMatrice.h"
-#include "display.h"
+
 
 /**
  * \fn error(double tab[], double res[], int N)
@@ -40,43 +40,6 @@ double error(double tab[], double res[], int N){
     return error;
 }
 
-
-/**
- * \fn void test_gauss()
- * \brief Fonction pour tester la rapidité de l'execution de gauss en fonction de la taille de la matrice, avec une allocation fixe qui va jusqu'a une matrice de dimention 1000
- */
-void test_gauss(){
-    double tab[1000000], a[1000], err; 
-    gauss_testing_core(1000, tab, a);
-}
-
-/**
- * \fn void test_gauss()
- * \brief Fonction pour tester la rapidité de l'execution de cholesky en fonction de la taille de la matrice, avec une allocation fixe d'un tableau qui va jusqu'a une matrice de dimension 1000
- */
-void test_cholesky(){
-    double tab[1000000], a[1000]; 
-    cholesky_testing_core(1000, tab, a);
-}
-
-/**
- * \fn void test_gauss_Dyn(int maxDim)
- * \brief Fonction pour tester la rapidité de l'execution de gauss en fonction de la taille de la matrice, avec une allocation dynamique d'un tableau qui va jusqu'a une matrice de dimension saisi
- * \param maxDim dimension max de la matrice
- */
-void test_gauss_Dyn(int maxDim){
-    double *tab, *a; 
-    tab = calloc(maxDim*maxDim, sizeof(double));
-    a = calloc(maxDim, sizeof(double));
-    if(tab == NULL || a == NULL){
-        printf("PB malloc");
-        exit(0);
-    }
-    gauss_testing_core(maxDim, tab, a);
-    free(tab);
-    free(a);
-}
-
 /**
  * \fn void gauss_testing_core(int maxDim, double tab[], double res[])
  * \brief Fonction qui exécute une résolution par gauss pour chaque dimension jusqu'a la dimension saisi, puis affiche le temps d'execution, la dimension et l'erreur dans l'entrée standard si le temps d'execution est suppérieur a zero 
@@ -89,7 +52,7 @@ void gauss_testing_core(int maxDim, double tab[], double res[]){
     double err;
     clock_t start, end;
     printf("time(ms);dim;error\n");
-    for( j = 100; j < maxDim; j++){
+    for( j = 100; j < maxDim; j+=100){
         for( i = 0; i < j; i++){
             res[i] = 1;
         }
@@ -111,6 +74,73 @@ void gauss_testing_core(int maxDim, double tab[], double res[]){
 }
 
 /**
+ * \fn void gauss_testing_core(int maxDim, double tab[], double res[])
+ * \brief Fonction qui exécute une résolution par cholesky pour chaque dimension jusqu'a la dimension saisi, puis affiche le temps d'execution, la dimension et l'erreur dans l'entrée standard si le temps d'execution est suppérieur a zero 
+ * \param maxDim dimension max de la matrice
+ * \param tab tableau pour contenir une matrice
+ * \param res tableau pour contenir les résultats d'une matrice.
+ */
+void cholesky_testing_core(int maxDim, double tab[], double res[]){
+    int i,j;
+    double err;
+    clock_t start, end;
+    printf("time(ms);dim;error\n");
+    for( j = 100; j < maxDim; j=+j+100){
+        for( i = 0; i < j; i++){
+            res[i] = 1;
+        }
+        init_zero(tab,j);
+        matrice_sym_pos(tab, j);
+        start=clock();
+        cholesky_Dyn(tab, res, j);
+        end=clock();
+        init_zero(tab,j);
+        matrice_sym_pos(tab, j);
+        err = error(tab, res, j);
+        double extime=(double) (end-start)*1000.0/CLOCKS_PER_SEC;
+        if(extime != 0){
+            printf("%f;%d;%f\n",extime, j, err);
+        }
+    }
+}
+
+/**
+ * \fn void test_gauss()
+ * \brief Fonction pour tester la rapidité de l'execution de gauss en fonction de la taille de la matrice, avec une allocation fixe qui va jusqu'a une matrice de dimention 1000
+ */
+void test_gauss(){
+    double tab[1000000], a[1000], err; 
+    gauss_testing_core(1000, tab, a);
+}
+
+/**
+ * \fn void test_gauss()
+ * \brief Fonction pour tester la rapidité de l'execution de cholesky en fonction de la taille de la matrice, avec une allocation fixe d'un tableau qui va jusqu'a une matrice de dimension 1000
+ */
+void test_cholesky(){
+    double tab[1000000], a[1000]; 
+    cholesky_testing_core(1000, tab, a);
+}
+    
+/**
+ * \fn void test_gauss_Dyn(int maxDim)
+ * \brief Fonction pour tester la rapidité de l'execution de gauss en fonction de la taille de la matrice, avec une allocation dynamique d'un tableau qui va jusqu'a une matrice de dimension saisi
+ * \param maxDim dimension max de la matrice
+ */
+void test_gauss_Dyn(int maxDim){
+    double *tab, *a; 
+    tab = calloc(maxDim*maxDim, sizeof(double));
+    a = calloc(maxDim, sizeof(double));
+    if(tab == NULL || a == NULL){
+        printf("PB malloc");
+        exit(0);
+    }
+    gauss_testing_core(maxDim, tab, a);
+    free(tab);
+    free(a);
+}
+
+/**
  * \fn void test_cholesky_Dyn(int maxDim)
  * \brief Fonction pour tester la rapidité de l'execution de cholesky en fonction de la taille de la matrice, avec une allocation dynamique d'un tableau qui va jusqu'a une matrice de dimension saisi
  * \param maxDim dimension max de la matrice
@@ -128,34 +158,3 @@ void test_cholesky_Dyn(int maxDim){
     free(a);
 }
 
-/**
- * \fn void gauss_testing_core(int maxDim, double tab[], double res[])
- * \brief Fonction qui exécute une résolution par cholesky pour chaque dimension jusqu'a la dimension saisi, puis affiche le temps d'execution, la dimension et l'erreur dans l'entrée standard si le temps d'execution est suppérieur a zero 
- * \param maxDim dimension max de la matrice
- * \param tab tableau pour contenir une matrice
- * \param res tableau pour contenir les résultats d'une matrice.
- */
-void cholesky_testing_core(int maxDim, double tab[], double res[]){
-    int i,j;
-    double err;
-    clock_t start, end;
-    printf("time(ms);dim;error\n");
-    for( j = 100; j < maxDim; j++){
-        for( i = 0; i < j; i++){
-            res[i] = 1;
-        }
-        init_zero(tab,j);
-        matrice_sym_pos(tab, j);
-        start=clock();
-        cholesky(tab, res, j);
-        end=clock();
-        init_zero(tab,j);
-        matrice_sym_pos(tab, j);
-        err = error(tab, res, j);
-        double extime=(double) (end-start)*1000.0/CLOCKS_PER_SEC;
-        if(extime != 0){
-            printf("%f;%d;%f\n",extime, j, err);
-        }
-    }
-}
-    

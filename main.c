@@ -13,12 +13,11 @@
 #include <stdlib.h>
 #include "testing.h"
 
-
-
 int main(){
-    //test_gauss_Dyn(1000);
+    test_gauss_Dyn(10000);
     
-    test_cholesky(1000);
+    //test_cholesky_Dyn(10000);
+
 
     return 0;
 }

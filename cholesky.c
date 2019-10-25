@@ -57,16 +57,16 @@ int decomp_cholesky(double *tab, double *decomp, int N){
  * \param y ?
  * \param N dimention de la matrice.
  */
-void equation1(double *tab, double *res, double *y, int N){
+void equation1(double *tab, double *res, int N){
     int i, j;
     double somme;
-    y[0] = res[0]/tab[0];
+    res[0] = res[0]/tab[0];
     for(i = 1; i < N; i++){
         somme = 0;
         for (j = 0; j < i; j++){
-            somme += tab[i*N+j]*y[j];
+            somme += tab[i*N+j]*res[j];
         }
-        y[i] = (res[i]-somme)/tab[i*N+i];
+        res[i] = (res[i]-somme)/tab[i*N+i];
     }
 }
 
@@ -79,16 +79,16 @@ void equation1(double *tab, double *res, double *y, int N){
  * \param y ?
  * \param N dimention de la matrice.
  */
-void equation2(double *tab, double *res, double *y, int N){
+void equation2(double *tab, double *res, int N){
     int i, j;
     double somme;
-    y[N-1] = res[N-1]/tab[(N-1)*N+N-1];
+    res[N-1] = res[N-1]/tab[(N-1)*N+N-1];
     for(i = N-2; i >= 0; i--){
         somme = 0;
         for (j = N-1; j > i; j--){
-            somme += tab[i*N+j]*y[j];
+            somme += tab[i*N+j]*res[j];
         }
-        y[i] = (res[i]-somme)/tab[i*N+i];
+        res[i] = (res[i]-somme)/tab[i*N+i];
     }
 }
 
@@ -100,9 +100,10 @@ void equation2(double *tab, double *res, double *y, int N){
  * \param res tableau contenant les résultats voulu pour la matrice "tab" donnée.
  * \param N dimention de la matrice.
  */
-int cholesky(double *tab, double *res, int N){
+int cholesky_Dyn(double *tab, double *res, int N){
     int err;
-    double *decomp = calloc(N*N, sizeof(double)), y[10000];
+    double *decomp = calloc(N*N, sizeof(double));
+
     if(decomp == NULL){
         printf("PB malloc");
         exit(0);
@@ -111,9 +112,22 @@ int cholesky(double *tab, double *res, int N){
     err = decomp_cholesky(tab, decomp, N);
     if(err == -1){exit(0);}
     //R * y = b
-    equation1(decomp, res, y, N);
+    equation1(decomp, res, N);
     transpose(decomp, N);
     //Rt * x = y
-    equation2(decomp, y, res, N);
+    equation2(decomp, res, N);
     free(decomp);
+}
+
+int cholesky(double *tab, double *res, int N){
+    int err;
+    double decomp[100];
+    init_zero(decomp, N);
+    err = decomp_cholesky(tab, decomp, N);
+    if(err == -1){exit(0);}
+    //R * y = b
+    equation1(decomp, res, N);
+    transpose(decomp, N);
+    //Rt * x = y
+    equation2(decomp, res, N);
 }
