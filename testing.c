@@ -49,7 +49,7 @@ double error(double tab[], double res[], int N){
  */
 void gauss_testing_core(int maxDim, double tab[], double res[]){
     int i,j;
-    double err;
+    double err, *clone;
     clock_t start, end;
     printf("time(ms);dim;error\n");
     for( j = 100; j < maxDim; j+=100){
@@ -57,19 +57,21 @@ void gauss_testing_core(int maxDim, double tab[], double res[]){
             res[i] = 1;
         }
         init_zero(tab,j);
-        a_bord1(tab,j);
+        kms(tab,j);
+        clone = calloc(j*j, sizeof(double));
         if(make_valide_gauss(tab,res,j)){
+            copy(tab, clone, j);
             start=clock();
             gauss(tab, res, j);
             end=clock();
+            init_zero(tab,j);
+            err = error(clone, res, j);
+            double extime=(double) (end-start)*1000.0/CLOCKS_PER_SEC;
+            if(true){
+                printf("%f;%d;%f\n",extime, j, err);
+            }
         }
-        init_zero(tab,j);
-        a_bord1(tab,j);
-        err = error(tab, res, j);
-        double extime=(double) (end-start)*1000.0/CLOCKS_PER_SEC;
-        if(extime != 0){
-            printf("%f;%d;%f\n",extime, j, err);
-        }
+        free(clone);
     }
 }
 
@@ -82,25 +84,29 @@ void gauss_testing_core(int maxDim, double tab[], double res[]){
  */
 void cholesky_testing_core(int maxDim, double tab[], double res[]){
     int i,j;
-    double err;
+    double err, *clone;
     clock_t start, end;
     printf("time(ms);dim;error\n");
-    for( j = 100; j < maxDim; j=+j+100){
+    for( j = 1; j < maxDim; j++){
         for( i = 0; i < j; i++){
             res[i] = 1;
         }
+        clone = calloc(j*j, sizeof(double));
         init_zero(tab,j);
-        matrice_sym_pos(tab, j);
+        moler(tab, j);
+        copy(tab, clone, j);
         start=clock();
         cholesky_Dyn(tab, res, j);
         end=clock();
         init_zero(tab,j);
-        matrice_sym_pos(tab, j);
-        err = error(tab, res, j);
+        moler(tab, j);
+        err = error(clone, res, j);
         double extime=(double) (end-start)*1000.0/CLOCKS_PER_SEC;
-        if(extime != 0){
+        if(err >= 0.00001 || err <= -0.00001){
             printf("%f;%d;%f\n",extime, j, err);
+            exit(0);
         }
+        free(clone);
     }
 }
 

@@ -15,7 +15,6 @@
 
 int main(){
     test_gauss_Dyn(10000);
-    
     //test_cholesky_Dyn(10000);
 
 

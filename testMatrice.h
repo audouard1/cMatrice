@@ -14,6 +14,7 @@
 
 void init_zero(double tab[], int N);
 void transpose(double tab[], int N);
+void copy(double src[], double dest[], int N);
 void a_bord1(double tab[], int N);
 void a_bord2(double tab[], int N);
 void ding_dong(double tab[], int N);

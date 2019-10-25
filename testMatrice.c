@@ -47,6 +47,15 @@ void transpose(double tab[], int N){
     }
 }
 
+void copy(double src[], double dest[], int N){
+    int i, j;
+    for(i = 0; i < N; i++){
+        for(j = 0; j < N; j++){
+            dest[i*N + j] = src[i*N + j];
+        }
+    }
+}
+
 /**
  * \fn a_bord1(double tab[], int N)
  * \brief Fonction pour générer une matrice a bord.
