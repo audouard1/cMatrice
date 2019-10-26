@@ -1,5 +1,4 @@
 # cMatrice
-[![license][license-badge]][LICENSE]
 
 Calcule matriciel en C pour la comparaison du temps de calcule entre la méthode de gauss et cholesky.
 
