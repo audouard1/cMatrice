@@ -1,3 +1,4 @@
+[![Quality Gate Status](https://sonarqube.douard.me/api/project_badges/measure?project=cMatrice&metric=alert_status)](https://sonarqube.douard.me/dashboard?id=cMatrice)
 # cMatrice
 
 Calcule matriciel en C pour la comparaison du temps de calcule entre la méthode de gauss et cholesky.
