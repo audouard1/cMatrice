@@ -11,6 +11,7 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include "display.h"
 
 /**
  * \fn void display_tab(double *tab, int N)

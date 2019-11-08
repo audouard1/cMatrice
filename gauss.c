@@ -12,6 +12,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
+#include "gauss.h"
 
 /**
  * \fn void gauss_supp(double *tab, double *res, int N)

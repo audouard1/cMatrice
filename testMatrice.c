@@ -9,9 +9,10 @@
  *
  */
 
-#include<stdio.h>
-#include<stdlib.h>
-#include<math.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <math.h>
+#include "testMatrice.h"
 
 /**
  * \fn void init_zero(double tab[], int N)

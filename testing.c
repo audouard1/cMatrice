@@ -12,6 +12,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
+#include <math.h>
+#include "testing.h"
 #include "gauss.h"
 #include "cholesky.h"
 #include "testMatrice.h"
@@ -67,7 +69,7 @@ void gauss_testing_core(int maxDim, double tab[], double res[]){
             init_zero(tab,j);
             err = error(clone, res, j);
             double extime=(double) (end-start)*1000.0/CLOCKS_PER_SEC;
-            if(true){
+            if(extime != 0.0){
                 printf("%f;%d;%f\n",extime, j, err);
             }
         }
@@ -99,13 +101,12 @@ void cholesky_testing_core(int maxDim, double tab[], double res[]){
         cholesky_Dyn(tab, res, j);
         end=clock();
         init_zero(tab,j);
-        moler(tab, j);
+        kms(tab, j);
         err = error(clone, res, j);
         double extime=(double) (end-start)*1000.0/CLOCKS_PER_SEC;
-        if(err >= 0.00001 || err <= -0.00001){
-            printf("%f;%d;%f\n",extime, j, err);
-            exit(0);
-        }
+        if(extime != 0.0){
+                printf("%f;%d;%f\n",extime, j, err);
+            }
         free(clone);
     }
 }
